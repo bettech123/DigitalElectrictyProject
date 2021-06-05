@@ -32,7 +32,7 @@ namespace EDSCustomerPortal
                 Console.Clear();
                 Console.WriteLine("Welcome To EDS CUSTOMER PORTAL.\n");
 
-                Console.WriteLine("Choose an Option : 1. Login         2. Register");
+                Console.WriteLine("Choose an Option : 1. Login         2. Register         3. Exit App");
                 string choice = Console.ReadLine();
 
                 switch (choice)
@@ -44,6 +44,10 @@ namespace EDSCustomerPortal
                     case "2":
                         inRegisterPage = true;
                         break;
+                    case "3":
+                    Console.WriteLine("Thank you our dear esteem customer");
+                    Environment.Exit(1);
+                    break;
                 }
 
                 while (inLoginPage)
@@ -101,12 +105,13 @@ namespace EDSCustomerPortal
                 customerForm.MeterNumber = MeterNumber;
                 customerForm.PhoneNumber = PhoneNumber;
                 
+
                 string response = AuthenticationService.RegisterUser(customerForm);
 
                 if (response == "Success")
                 {
                     Console.WriteLine("Registered Successfully ---> Redirecting To Home Page");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(3000);
                 }
                 else
                 {
@@ -118,58 +123,48 @@ namespace EDSCustomerPortal
             }
 
             static  void NavigateToLogInPage()
-            {
+            {   
                 Console.WriteLine("Welcome Please input your details");
-                Console.WriteLine("Input Email");
-                string Email = Console.ReadLine();
-                Console.WriteLine("Input Password");
-                string Password = Console.ReadLine();
+                bool status = true;
 
-                var customer = AuthenticationService.LoginUser(Email);
+                do{
+                   Console.WriteLine("Input Email");
+                    string Email = Console.ReadLine();
+                    var customer = AuthenticationService.LoginUser(Email);
+
                 if(customer == null)
                 {
                     Console.WriteLine("No such user registered please check the details provided");
+                    Thread.Sleep(4000);
+
+                    
                 }
                 else
                 {
+                  Console.WriteLine("Input Password");
+                    string Password = Console.ReadLine();
                     if(customer.EmailAddress == Email && customer.Password != Password)
                     {
-                        Console.WriteLine("Wrong Password Inputed");
-                        while(customer.Password != Password)
-                        {
+                        do
+                        {   
+                            Console.WriteLine("Wrong Password Inputed");
                             Console.WriteLine("Input Password");
                             Password = Console.ReadLine();
-                            break;
-                        }
+                        }while(customer.Password != Password);  
                     }
-                    else if (customer.EmailAddress != Email && customer.Password == Password)
-                    {
-                         Console.WriteLine("Wrong Email Inputed");
-                         while(customer.EmailAddress != Email)
-                         {
-                             Console.WriteLine("Input Email");
-                            Email = Console.ReadLine();
-                            break;   
-                         }
-                         
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Welcome to the App {customer.FirstName} {customer.LastName}");
-                        Console.WriteLine("Redircting to Next Page");
-                        
-                        id = customer.Id;
-                        CustomerApplicationData.CurrentCustomerId = id;
-                        Thread.Sleep(3000);
-                        CustomersSecondScreen.UpdateAndSubcribeMenu();
-                    
-                    } 
+                    Console.WriteLine($"Welcome to the App {customer.FirstName} {customer.LastName}");
+                    Console.WriteLine("*** Redircting to Next Page ***");
+                    Thread.Sleep(4000);
+                    id = customer.Id;
+                    CustomerApplicationData.CurrentCustomerId = id;
+                    CustomerApplicationData.CurrentCustomerMeterNumber = customer.MeterNumber;
+                status = false;
                 }
-                
-                inLoginPage = false;
-            }
-
-        
+            }while(status);
+            
+            CustomersSecondScreen.UpdateAndSubcribeMenu();
+            inLoginPage = false;
+        }     
     }
     }
 }

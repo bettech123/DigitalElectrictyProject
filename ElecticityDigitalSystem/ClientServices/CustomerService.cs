@@ -10,12 +10,6 @@ namespace ElectricityDigitalSystem.ClientServices
     {
         public string RegisterCustomer(CustomerModel customer)
         {
-            // if(customer == null)//true
-            // {
-            //     throw new ArgumentNullException(nameof(customer));
-            // }
-            //This will Handle registration of a customer
-           // else //false
            
            JsonFileService jsonFileService = new JsonFileService();
             fileService.database.Customers.Add(customer);
@@ -61,5 +55,7 @@ namespace ElectricityDigitalSystem.ClientServices
             }
             return "Failed, Customer not found";
         }
+
+       
     }
 }

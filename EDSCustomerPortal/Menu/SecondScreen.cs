@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using EDSCustomerPortal.AppData;
 
 namespace EDSCustomerPortal
 {
@@ -6,10 +8,11 @@ namespace EDSCustomerPortal
     {
         public static void UpdateAndSubcribeMenu()
         {
-            //UpdateProfileDetails updateProfileDetails = new UpdateProfileDetails();
+            
             Menu menu = new Menu();
+            Console.Clear();
             Console.WriteLine("Welcome");
-            Console.WriteLine("Press 1 to Update your Records\nPress 2 to Subcribe To A Tariff plan\nPress 3 to Unsubcribe from your Tariff Plan");
+            Console.WriteLine("Press 1 to Update your Records\nPress 2 to Subcribe To A Tariff plan\nPress 3 to Unsubcribe from your Tariff Plan\nPress 4 To View Current Subcription\nPress 5 to Logout");
             string reply = Console.ReadLine();
             switch (reply)
             {
@@ -17,10 +20,18 @@ namespace EDSCustomerPortal
                 CustomerUpdateInputs.CustomerInputingDetails();
                 break;
                 case "2":
-                Console.WriteLine("Subcribing...");
+                Subcriptions.subcribe();
                 break;
                 case "3":
-                Console.WriteLine("Unsubscribing...");
+                Subcriptions.unSubcribeFromCurrentSubcription(CustomerApplicationData.CurrentCustomerId);
+                break;
+                case "4":
+                Subcriptions.viewCurrentCustomerSubcription(CustomerApplicationData.CurrentCustomerId);
+                break;
+                case "5":
+                Console.WriteLine("Redirecting");
+                Thread.Sleep(2000);
+                Menu.selection();
                 break;
             }
         }
