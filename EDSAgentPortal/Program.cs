@@ -6,7 +6,8 @@ namespace EDSAgentPortal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Testing the Accept And Process Customer Methods.
+            MenuSecondScreen.AccessSecondScreen();
         }
     }
 }

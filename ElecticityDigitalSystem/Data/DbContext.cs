@@ -12,6 +12,7 @@ namespace ElectricityDigitalSystem.Data
         public List<CustomerSubcription> Subcriptions { get; set; } = new List<CustomerSubcription>();
         public List<MeterModel> Meters { get; set; } = new List<MeterModel>();
         public List<TarriffModel> Tariffs { get; set; } = new List<TarriffModel>();
+        public List<AcceptAndProcessPaymentModel> AcceptingPayment { get; set; } = new List<AcceptAndProcessPaymentModel>();
 
 
     }

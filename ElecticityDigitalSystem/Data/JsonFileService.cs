@@ -26,7 +26,7 @@ namespace ElectricityDigitalSystem.Data
 
             if (!File.Exists(Path.Combine(FileConstant.DBFOLDER, jsonFileName))) 
             {
-                //File.Create(Path.Combine(FileConstant.DBFOLDER, jsonFileName));
+                //Not working File.Create(Path.Combine(FileConstant.DBFOLDER, jsonFileName));
                 this.database = new DbContext();
   
             }

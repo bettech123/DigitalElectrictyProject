@@ -53,8 +53,8 @@ namespace EDSCustomerPortal
                     customer.MeterNumber = meterNumber;
                     break;
                 }
-
-                jsonFileService.SaveChanges();
+            customer.ModifiedDateTime = DateTime.Now;
+            jsonFileService.SaveChanges();
                 customerService.UpdateCustomer(customer);
                 Console.WriteLine("Redirecting ....");
                 CustomersSecondScreen.UpdateAndSubcribeMenu();             
