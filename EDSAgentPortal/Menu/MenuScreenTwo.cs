@@ -11,6 +11,9 @@ namespace EDSAgentPortal
             //Store that Information on the Customer in their
             // Database
 
+            //View the Personal/ Electricity  Tariff Information related to a Customer.
+
+
             Console.WriteLine("Press 1 to Process a payment from a customer.");
             string reply = Console.ReadLine();
             switch (reply)
@@ -18,6 +21,9 @@ namespace EDSAgentPortal
                 case "1":
                     AcceptPayment.AcceptUserDetailsForPayment();
                 break;
+                case "2":
+                    TariffInformation.ViewCustomerInformation();
+                    break;
                 default:
                 Console.WriteLine("Wrong input");
                 break;

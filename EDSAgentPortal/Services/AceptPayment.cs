@@ -22,9 +22,10 @@ namespace EDSAgentPortal
             Console.WriteLine("tWelcome to the Payment Portal\ntFill in the required details to process a payment");
            
             acceptAndProcessPaymentModel.Id = Guid.NewGuid().ToString();
-            Console.WriteLine("Input Your FullName : ");
-            acceptAndProcessPaymentModel.AgentName = agentService.InputsValidation(Console.ReadLine());
-            
+            Console.WriteLine("Input Your FirstName : ");
+            acceptAndProcessPaymentModel.CustomerFirstName = agentService.InputsValidation(Console.ReadLine());
+            Console.WriteLine("Input Your LastName : ");
+            acceptAndProcessPaymentModel.CustomerLastName = agentService.InputsValidation(Console.ReadLine());            
             Console.WriteLine("Input Your Meter Number : ");
             acceptAndProcessPaymentModel.CustomerMeterNumber = agentService.InputsValidation(Console.ReadLine());
             Console.WriteLine("Current Tariff Classes Are \nS1 = #16/KWH\nA3 = #25/KWH\nD1 = #23/KWH\nR3 = #18/KWH");
@@ -58,6 +59,7 @@ namespace EDSAgentPortal
             acceptAndProcessPaymentModel.CustomerAmount = Convert.ToDecimal(Console.ReadLine());
             acceptAndProcessPaymentModel.AgentId = AgentApplicationData.CurrentAgentId;
             acceptAndProcessPaymentModel.AgentName = $"{Agent.FirstName}  {Agent.LastName}";
+            acceptAndProcessPaymentModel.KilowattsPurchased = acceptAndProcessPaymentModel.CustomerAmount / acceptAndProcessPaymentModel.PricePerUnit;
 
             jsonFileService.SaveChanges();
             agentService.SavePaymentDetails(acceptAndProcessPaymentModel);

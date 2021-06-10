@@ -13,7 +13,8 @@ namespace ElectricityDigitalSystem.Models
                 //Agent Id
                 //Agent Name
         public string Id { get; set; }        
-        public string CustomerName { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
         public string  CustomerMeterNumber { get; set; }
         public string TarrifName { get; set; }
         public decimal PricePerUnit { get; set; }
@@ -21,5 +22,6 @@ namespace ElectricityDigitalSystem.Models
         public string AgentId { get; set; }
         public string AgentName { get; set; }
         public DateTime PurchasedDate { get; set; } = DateTime.Now;
+        public decimal KilowattsPurchased { get; set; }
     }
 }

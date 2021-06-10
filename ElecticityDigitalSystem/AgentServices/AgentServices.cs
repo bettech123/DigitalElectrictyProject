@@ -48,6 +48,17 @@ namespace ElectricityDigitalSystem
                 }
                 
             } while (status);
+            return input;
+        }
+
+         public AcceptAndProcessPaymentModel GetCustomerPersonalTariffInformation(string meterNumber)
+        {
+            
+            AcceptAndProcessPaymentModel foundCustomer = fileService.database.AcceptingPayment.Find(A => A.Id == meterNumber);
+            if (foundCustomer != null)
+            {
+                return foundCustomer;
+            }
             return null;
         }
 
