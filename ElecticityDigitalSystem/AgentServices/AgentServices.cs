@@ -62,5 +62,29 @@ namespace ElectricityDigitalSystem
             return null;
         }
 
+        public void UpdateAgentinfo(AgentsModel agent)
+        {
+            Console.WriteLine("\t\tWhat would like to update?\n\n");
+            Console.WriteLine("\t\t1 : First Name \n\t\t2 : Last Name\n\t\t3 : Email Address\n\t\t4 : Phone Number");
+            Console.Write($"\t\t  : ");
+            string NewEntry = Console.ReadLine();
+            switch (NewEntry)
+            {
+                case "1":
+                    Console.Write("\t\tFirst Name : ");
+                    string newFirstName = Console.ReadLine();
+                    while (string.IsNullOrEmpty(newFirstName))
+                    {
+                        Console.WriteLine("\n\n\t\tFirst name cannot be left blank");
+                        Console.Write("\t\tFirst Name : ");
+                        newFirstName = Console.ReadLine();
+                    }
+                    agent.FirstName = newFirstName;
+                    agent.ModifiedDateTime = DateTime.Now;
+                    
+            }
+        }
+
+        
     }
 }
